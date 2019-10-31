@@ -13,6 +13,12 @@ import numpy as _np
 import scipy.sparse as _sparse
 
 
+def wrap_numpy(fn):
+    def stats_fn(values, axis=1):
+        return fn(_np.asmatrix(values, axis=axis).A1
+    return stats_fn
+
+
 def mean(values, axis=1):
     '''Returns the mean of each row of a matrix'''
     if isinstance(values, _sparse.csr_matrix):
